@@ -27,5 +27,5 @@ abstract class AppDB :RoomDatabase(){
         }
 
     }
-
+    
 }
