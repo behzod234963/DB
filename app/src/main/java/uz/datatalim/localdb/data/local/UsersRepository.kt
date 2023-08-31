@@ -25,9 +25,9 @@ class UsersRepository(private val app:Application) {
 
     }
 
-    fun getUserById(id:Int){
+    fun getUserById(id: Int):UsersModel{
 
-        usersDao.getUserByID(id)
+        return usersDao.getUserByID(id)
 
     }
 

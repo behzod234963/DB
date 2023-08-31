@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import uz.datatalim.localdb.model.UsersModel
 
 
-@Database(entities = [UsersModel::class], version = 1)
+@Database(entities = [UsersModel::class], version = 2)
 abstract class AppDB :RoomDatabase(){
 
     abstract fun getUserDao():UsersDaoInterface
@@ -20,7 +20,7 @@ abstract class AppDB :RoomDatabase(){
 
             if (DB_INSTANCE==null){
 
-                DB_INSTANCE=Room.databaseBuilder(ctx.applicationContext,AppDB::class.java,"mydb").build()
+                DB_INSTANCE=Room.databaseBuilder(ctx.applicationContext,AppDB::class.java,"mydb").allowMainThreadQueries().build()
 
             }
             return DB_INSTANCE!!

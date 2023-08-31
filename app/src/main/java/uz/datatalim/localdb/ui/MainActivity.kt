@@ -8,6 +8,7 @@ import android.widget.TextView
 import uz.datatalim.localdb.R
 import uz.datatalim.localdb.data.local.UsersRepository
 import uz.datatalim.localdb.model.UsersModel
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +25,13 @@ class MainActivity : AppCompatActivity() {
         val btnGet:Button=findViewById(R.id.btnGet)
         val etUsername:EditText=findViewById(R.id.etEmail)
         val etPassword:EditText=findViewById(R.id.etPassword)
+        val etPhone:EditText=findViewById(R.id.etPhone)
         val repository=UsersRepository(application)
         val tvBackup:TextView=findViewById(R.id.tvBackup)
 
         btnSave.setOnClickListener {
 
-            val user=UsersModel(1,"Behzod","4444","+998973570498")
+            val user=UsersModel(null,etUsername.text.toString(),etPassword.text.toString(),etPhone.text.toString())
             repository.saveUsers(user)
 
         }
@@ -42,4 +44,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
