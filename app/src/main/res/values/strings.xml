@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Local DB</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="didn_t_have_any_account">Didn\'t have any account</string>
+    <string name="sign_up_here">Sign up here</string>
+    <string name="save">Save</string>
+    <string name="get">Get</string>
 </resources>
