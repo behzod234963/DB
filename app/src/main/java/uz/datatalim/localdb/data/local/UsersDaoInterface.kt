@@ -9,7 +9,7 @@ import uz.datatalim.localdb.model.UsersModel
 
 
 @Dao
-interface UsersDao {
+interface UsersDaoInterface {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(user:UsersModel)
