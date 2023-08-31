@@ -7,16 +7,15 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import uz.datatalim.localdb.Adapter
+import uz.datatalim.localdb.adapter.Adapter
 import uz.datatalim.localdb.R
 import uz.datatalim.localdb.data.local.UsersRepository
 import uz.datatalim.localdb.model.UsersModel
-import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var list: ArrayList<UsersModel>
-    lateinit var ada:Adapter
+    lateinit var adapter: Adapter
     private lateinit var repository:UsersRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,17 +30,17 @@ class MainActivity : AppCompatActivity() {
         repository= UsersRepository(application)
         loadUsers()
         val rvDB:RecyclerView=findViewById(R.id.rvDB)
-        ada=Adapter()
+        adapter= Adapter()
 
-        rvDB.layoutManager=LinearLayoutManager(this)
-        rvDB.adapter=ada
-        ada.submitList(list)
         val btnSave:Button=findViewById(R.id.btnSave)
         val btnGet:Button=findViewById(R.id.btnGet)
         val etUsername:EditText=findViewById(R.id.etEmail)
         val etPassword:EditText=findViewById(R.id.etPassword)
         val etPhone:EditText=findViewById(R.id.etPhone)
         val tvBackup:TextView=findViewById(R.id.tvBackup)
+        rvDB.layoutManager=LinearLayoutManager(this)
+        rvDB.adapter=adapter
+        adapter.submitList(list)
 
         btnSave.setOnClickListener {
 
@@ -52,8 +51,8 @@ class MainActivity : AppCompatActivity() {
 
         btnGet.setOnClickListener {
 
-            val getUsers=repository.getUserById(1)
-            tvBackup.text=getUsers.toString()
+            loadUsers()
+            adapter.submitList(list)
 
         }
 
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadUsers() {
         list= ArrayList()
-        list=repository
+        list= repository.getAllUser() as ArrayList<UsersModel>
     }
 
 }

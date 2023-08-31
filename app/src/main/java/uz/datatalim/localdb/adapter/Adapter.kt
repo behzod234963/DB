@@ -1,20 +1,23 @@
-package uz.datatalim.localdb
+package uz.datatalim.localdb.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import uz.datatalim.localdb.R
 import uz.datatalim.localdb.model.UsersModel
 
 class Adapter :RecyclerView.Adapter<Adapter.ViewHolder>(){
 
-    val list:ArrayList<UsersModel>?=null
+    val list:ArrayList<UsersModel> =ArrayList()
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(list: ArrayList<UsersModel>){
 
-        this.list?.clear()
-        this.list?.addAll(list)
+        this.list.clear()
+        this.list.addAll(list)
+        notifyDataSetChanged()
 
     }
 
@@ -31,19 +34,18 @@ class Adapter :RecyclerView.Adapter<Adapter.ViewHolder>(){
 
     }
 
+    override fun getItemCount(): Int {
+        return list.size
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.apply {
 
-            tvUsername.text=list!![position].userName
+            tvUsername.text= list[position].userName
             tvPhone.text= list[position].phonNumber
 
         }
 
     }
-
-    override fun getItemCount(): Int {
-        return list!!.size
-    }
-
 }
